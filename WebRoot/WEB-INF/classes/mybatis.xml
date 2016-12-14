@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<properties resource="jdbc.properties">
+		<!-- 
+		<property name="driver" value=""/>
+		<property name="url" value=""/>
+		<property name="username" value=""/>
+		<property name="password" value=""/> 
+		-->
+	</properties>
+	
+	<!-- 为所有的POJO起别名,规则为POJO类的的简单类名首字母变为小写 -->
+	<typeAliases>
+		<package name="com.chen.vo"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理器类型 -->
+			<transactionManager type="JDBC" />
+			<!-- 配置数据源 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- <mapper  resource="com/chen/mapper/DeptMapper.xml" />
+		<mapper  resource="com/chen/mapper/EmployeeMapper.xml" /> -->
+		<package name="com.chen.mapper"/>
+	</mappers> 
+</configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chen.mapper.DeptMapper">
+<resultMap type="department" id="DeptartmentMapper">
+	<id property="deptno" column="DEPTNO"/>
+	<result property="dname" column="DNAME"/>
+	<result property="loc" column="LOC"/>
+	<collection property="emps" ofType="employee" 
+	resultMap="com.chen.mapper.EmployeeMapper.BaseEmployeeMapper">
+	</collection>
+</resultMap>
+<select id="selectByPrimaryKey" parameterType="integer" resultMap="DeptartmentMapper">
+		select d.*,
+			   e.* 
+		from scott.dept d
+		  left join scott.emp e
+		     on d.deptno=e.deptno
+		where d.deptno=#{id}
+	</select>
+</mapper>
